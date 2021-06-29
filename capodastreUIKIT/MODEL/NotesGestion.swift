@@ -38,6 +38,13 @@ class NotesGestion {
         Note(name: "Gm", image: ""),
         Note(name: "Gm#", image: "")
     ]
+    
+    var notesChoose = [String]()
+    
+    
+    func chooseNote (note : String) {
+        notesChoose.append(note)
+    }
 
     //MARK:- fonction de transposition
 

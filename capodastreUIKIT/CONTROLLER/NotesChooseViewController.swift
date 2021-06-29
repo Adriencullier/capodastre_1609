@@ -17,10 +17,19 @@ class NotesChooseViewController: UIViewController {
     
     @IBOutlet weak var minorNotesCollectionV: UICollectionView!
     
+    @IBOutlet weak var labelNotesChoose: UILabel!
+    
+   
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        displayNotesChoose()
+       
+        
+        
+        
     }
     
 
@@ -29,6 +38,7 @@ class NotesChooseViewController: UIViewController {
 }
 
 extension NotesChooseViewController : UICollectionViewDataSource {
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return NotesGestion.shared.majorNoteArray.count
@@ -47,8 +57,11 @@ extension NotesChooseViewController : UICollectionViewDataSource {
         
         guard let minorNoteCell = minorNotesCollectionV.dequeueReusableCell(withReuseIdentifier: "MinorNoteToChooseCell", for: indexPath) as? MinorNotesCollectionViewCell else {return UICollectionViewCell()}
         
+        
+        
         minorNoteCell.buttonMinorNotesToChoose.setTitle(minorNote.name, for: .normal)
         
+        minorNoteCell.buttonMinorNotesToChoose.addTarget(self, action: #selector(printSomething), for: .touchUpInside)
         
         if collectionView.tag == 1 {
             return majorNoteCell
@@ -61,6 +74,35 @@ extension NotesChooseViewController : UICollectionViewDataSource {
         
         
     }
+    
+    func displayNotesChoose(){
+    var textTot = ""
+    labelNotesChoose.text = textTot
+    for element in NotesGestion.shared.notesChoose {
+        
+        textTot += " \(element)"
+        
+        labelNotesChoose.text = textTot
+    }
+    }
+    
+    @objc func printSomething(sender : UIButton) {
+        NotesGestion.shared.chooseNote(note: sender.title(for: .normal)!)
+        print (NotesGestion.shared.notesChoose)
+        labelNotesChoose.reloadInputViews()
+        displayNotesChoose()
+    }
+   
+ 
+    
+    
+}
+
+extension NotesChooseViewController : UICollectionViewDelegate {
+    
+   
+   
+    
     
     
 }

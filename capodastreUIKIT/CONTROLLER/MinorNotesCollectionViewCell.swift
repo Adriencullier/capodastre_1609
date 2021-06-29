@@ -13,7 +13,11 @@ class MinorNotesCollectionViewCell: UICollectionViewCell {
    
         @IBOutlet weak var buttonMinorNotesToChoose: UIButton!
         
-        
+    @IBAction func actionMinorButton(_ sender: Any) {
+    }
+    
+
+    
     
 
     

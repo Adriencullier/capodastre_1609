@@ -11,5 +11,6 @@ class MajorNotesCollectionViewCell: UICollectionViewCell {
   
     @IBOutlet weak var buttonMajorNotesToChoose: UIButton!
     
+  
     
 }
