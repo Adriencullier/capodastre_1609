@@ -9,10 +9,17 @@ import UIKit
 
 class NotesChooseViewController: UIViewController {
 
-
-    @IBAction func dismissButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+   
+    @IBAction func deleteButton(_ sender: Any) {
+        NotesGestion.shared.notesChoose.removeAll()
+        displayNotesChoose()
     }
+    
+//    @IBAction func dismissButton(_ sender: Any) {
+//        dismiss(animated: true, completion: nil)
+//        displayNotesChoose()
+//        
+//    }
     @IBOutlet weak var majorNotesCollectionV: UICollectionView!
     
     @IBOutlet weak var minorNotesCollectionV: UICollectionView!
@@ -55,6 +62,8 @@ extension NotesChooseViewController : UICollectionViewDataSource {
        
         majorNoteCell.buttonMajorNotesToChoose.setTitle(majorNote.name, for: .normal)
         
+        majorNoteCell.buttonMajorNotesToChoose.addTarget(self, action: #selector(printSomething), for: .touchUpInside)
+        
         guard let minorNoteCell = minorNotesCollectionV.dequeueReusableCell(withReuseIdentifier: "MinorNoteToChooseCell", for: indexPath) as? MinorNotesCollectionViewCell else {return UICollectionViewCell()}
         
         
@@ -80,7 +89,7 @@ extension NotesChooseViewController : UICollectionViewDataSource {
     labelNotesChoose.text = textTot
     for element in NotesGestion.shared.notesChoose {
         
-        textTot += " \(element)"
+        textTot += "\(element)        "
         
         labelNotesChoose.text = textTot
     }

@@ -15,18 +15,58 @@ class CapodastreViewController: UIViewController {
     
     @IBAction func capoStepper(_ sender: Any) {
         capoLabel.text = Int(capoStepperOutlet.value).description
-    }
-    @IBAction func backCapodastreVC (segue : UIStoryboardSegue){
+       
+        displayTransposedNotes(capo: Int(capoStepperOutlet.value))
+        
         
     }
+    
+    
+    @IBOutlet weak var labelTransposeNotes: UILabel!
+    
+    
+    @IBAction func backCapodastreVC (segue : UIStoryboardSegue){
+      displayNotesChoose()
+        displayTransposedNotes(capo: Int(capoStepperOutlet.value))
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    
+    
+   
+    
+    @IBOutlet weak var labelNotesChoose: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        displayNotesChoose()
+        displayTransposedNotes(capo: Int(capoStepperOutlet.value))
+    }
+    
+    func displayNotesChoose(){
+    var textTot = ""
+    labelNotesChoose.text = textTot
+    for element in NotesGestion.shared.notesChoose {
+        
+        textTot += "\(element)        "
+        
+        labelNotesChoose.text = textTot
+    }
 
    
 
+}
+    func displayTransposedNotes(capo : Int){
+    var textTot = ""
+    labelTransposeNotes.text = textTot
+    for element in NotesGestion.shared.notesChoose {
+        
+        textTot += "\(NotesGestion.shared.transpose(note: element, capo: capo))        "
+        
+        labelTransposeNotes.text = textTot
+    }
+
+   
+
+}
 }
