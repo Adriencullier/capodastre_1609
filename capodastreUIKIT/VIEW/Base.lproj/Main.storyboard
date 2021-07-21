@@ -177,7 +177,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="69" height="71"/>
                                         <connections>
-                                            <outlet property="buttonMajorNotesToChoose" destination="ZLR-dB-Scp" id="v4V-VZ-7S3"/>
+                                            <outlet property="buttonMajorNotesToChoose" destination="ZLR-dB-Scp" id="tju-Co-cx6"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
