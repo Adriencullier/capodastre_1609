@@ -18,6 +18,7 @@
 		0371113E268B07CB0042976A /* NotesGestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371113D268B07CB0042976A /* NotesGestion.swift */; };
 		03711140268B104F0042976A /* MajorNotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371113F268B104F0042976A /* MajorNotesCollectionViewCell.swift */; };
 		03711164268B2B3C0042976A /* MinorNotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03711163268B2B3C0042976A /* MinorNotesCollectionViewCell.swift */; };
+		03B65C7A26B29C4C0056C5DB /* CapoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B65C7926B29C4C0056C5DB /* CapoLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0371113D268B07CB0042976A /* NotesGestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGestion.swift; sourceTree = "<group>"; };
 		0371113F268B104F0042976A /* MajorNotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorNotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		03711163268B2B3C0042976A /* MinorNotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorNotesCollectionViewCell.swift; sourceTree = "<group>"; };
+		03B65C7926B29C4C0056C5DB /* CapoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapoLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				03711137268B005E0042976A /* CapodastreViewController.swift */,
+				03B65C7926B29C4C0056C5DB /* CapoLabel.swift */,
 				0371113F268B104F0042976A /* MajorNotesCollectionViewCell.swift */,
 				03711139268B01AC0042976A /* NotesChooseViewController.swift */,
 				03711163268B2B3C0042976A /* MinorNotesCollectionViewCell.swift */,
@@ -192,6 +195,7 @@
 				03711138268B005E0042976A /* CapodastreViewController.swift in Sources */,
 				0371113A268B01AC0042976A /* NotesChooseViewController.swift in Sources */,
 				0371113E268B07CB0042976A /* NotesGestion.swift in Sources */,
+				03B65C7A26B29C4C0056C5DB /* CapoLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

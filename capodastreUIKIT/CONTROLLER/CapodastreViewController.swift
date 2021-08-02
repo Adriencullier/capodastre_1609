@@ -39,6 +39,9 @@ class CapodastreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         displayNotesChoose()
         displayTransposedNotes(capo: Int(capoStepperOutlet.value))
     }
