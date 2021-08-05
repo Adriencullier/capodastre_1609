@@ -10,7 +10,8 @@ import Foundation
 class NotesGestion {
     static let shared = NotesGestion()
     private init (){}
-    private(set) var majorNoteArray : [Note] = [
+    
+    let majorNoteArray : [Note] = [
         Note(name: "A", image: ""),
         Note(name: "A#", image: ""),
         Note(name: "B", image: ""),
@@ -24,7 +25,7 @@ class NotesGestion {
         Note(name: "G", image: ""),
         Note(name: "G#", image: "")
     ]
-    private(set) var minorNoteArray : [Note] = [
+    let minorNoteArray : [Note] = [
         Note(name: "Am", image: ""),
         Note(name: "Am#", image: ""),
         Note(name: "Bm", image: ""),
@@ -38,12 +39,58 @@ class NotesGestion {
         Note(name: "Gm", image: ""),
         Note(name: "Gm#", image: "")
     ]
+    let maj7NoteArray : [Note] = [
+        Note(name: "A7", image: ""),
+        Note(name: "A7#", image: ""),
+        Note(name: "B7", image: ""),
+        Note(name: "C7", image: ""),
+        Note(name: "C7#", image: ""),
+        Note(name: "D7", image: ""),
+        Note(name: "D7#", image: ""),
+        Note(name: "E7", image: ""),
+        Note(name: "F7", image: ""),
+        Note(name: "F7#", image: ""),
+        Note(name: "G7", image: ""),
+        Note(name: "G7#", image: "")
+    ]
     
-    var notesChoose = [String]()
+    let min7NoteArray : [Note] = [
+        Note(name: "Am7", image: ""),
+        Note(name: "Am#7", image: ""),
+        Note(name: "Bm7", image: ""),
+        Note(name: "Cm7", image: ""),
+        Note(name: "Cm#7", image: ""),
+        Note(name: "Dm7", image: ""),
+        Note(name: "Dm#7", image: ""),
+        Note(name: "Em7", image: ""),
+        Note(name: "Fm7", image: ""),
+        Note(name: "Fm#7", image: ""),
+        Note(name: "Gm7", image: ""),
+        Note(name: "Gm#7", image: "")
+    ]
     
     
-    func chooseNote (note : String) {
+    var notesChoose = [Note]()
+    
+    func chooseNote (note : Note) {
+        guard notesChoose.count < 8
+        else {
+           // TO DO : Print a message error (8 notes max)
+           print ("Message error : 8 notes max")
+            return
+        }
         notesChoose.append(note)
+        print("La note \(note.name) a bien été ajoutée à notesChoose")
+    }
+    
+    func delLastNote (){
+        
+        let lastNoteNumber = notesChoose.count-1
+        guard lastNoteNumber >= 0
+        else{
+            return
+        }
+        notesChoose.remove(at: lastNoteNumber)
     }
 
     //MARK:- fonction de transposition
@@ -53,7 +100,7 @@ class NotesGestion {
         var transposeNote = ""
         var indexMinor = 0
 
-        if note.contains("m"){
+        if note.contains("m") && note.contains("7") == false{
             for element in minorNoteArray {
                 if element.name == note {
                     for _ in 0...capo {
@@ -69,7 +116,45 @@ class NotesGestion {
                 indexMinor += 1
             }
         }
-        
+        else if note.contains("m") == false && note.contains("7"){
+            for element in maj7NoteArray {
+                if element.name == note {
+                    for _ in 0...capo {
+                        
+                        if indexMajor == 12 {
+                            indexMajor = 0
+                        }
+                        indexMajor += 1
+
+                        transposeNote = maj7NoteArray[indexMajor-1].name
+                    }
+                }
+                indexMajor += 1
+            }
+           
+            return transposeNote
+             
+                    }
+        else if note.contains("m") && note.contains("7") {
+            for element in min7NoteArray {
+                if element.name == note {
+                    for _ in 0...capo {
+                        
+                        if indexMajor == 12 {
+                            indexMajor = 0
+                        }
+                        indexMajor += 1
+
+                        transposeNote = min7NoteArray[indexMajor-1].name
+                    }
+                }
+                indexMajor += 1
+            }
+           
+            return transposeNote
+             
+                    }
+       
         for element in majorNoteArray {
             if element.name == note {
                 for _ in 0...capo {
@@ -86,13 +171,9 @@ class NotesGestion {
         }
        
         return transposeNote
-         
-                }
-
+        
+ 
 }
-
-
-
-
+}
 
 

@@ -9,108 +9,157 @@ import UIKit
 
 class NotesChooseViewController: UIViewController {
 
-   
-    @IBAction func deleteButton(_ sender: Any) {
-        NotesGestion.shared.notesChoose.removeAll()
-        displayNotesChoose()
-    }
+    @IBOutlet weak var notesToChooseViewContainer: UIView!
+    @IBOutlet weak var notesChooseViewContainer: UIView!
+    @IBOutlet weak var notesChooseCollectionView: UICollectionView!
+    @IBOutlet weak var segmentedControlNotesToChoose: UISegmentedControl!
     
-//    @IBAction func dismissButton(_ sender: Any) {
-//        dismiss(animated: true, completion: nil)
-//        displayNotesChoose()
-//        
-//    }
-    @IBOutlet weak var majorNotesCollectionV: UICollectionView!
-    
-    @IBOutlet weak var minorNotesCollectionV: UICollectionView!
-    
-    @IBOutlet weak var labelNotesChoose: UILabel!
-    
-   
+    @IBOutlet weak var noteToChooseCollectionView: UICollectionView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        noteToChooseCollectionView.backgroundColor = .clear
+        notesChooseCollectionView.backgroundColor = .clear
+        notesChooseViewContainer.backgroundColor = UIColor(red: 92/250, green: 142/250, blue: 200/250, alpha: 0.3)
+        notesChooseViewContainer.layer.cornerRadius = 20
         
-        displayNotesChoose()
-       
+        notesToChooseViewContainer.backgroundColor = UIColor(red: 243/250, green: 134/250, blue: 148/250, alpha: 0.3)
+        notesToChooseViewContainer.layer.cornerRadius = 20
+        
+        let notesChooseNameArray = UserDefaults.standard.object(forKey: "notesChooseName") as? [String] ?? [""]
+        guard  NotesGestion.shared.notesChoose.count < 8
+        else {
+            return
+        }
+        NotesGestion.shared.notesChoose.removeAll()
+        for element in notesChooseNameArray{
+            NotesGestion.shared.notesChoose.append(Note(name: element))}
         
         
         
     }
     
-
+    @IBAction func segmentedAction(_ sender: Any) {
+        noteToChooseCollectionView.reloadData()
+    }
     
-
+    @IBAction func delButton(_ sender: Any) {
+        NotesGestion.shared.delLastNote()
+        notesChooseCollectionView.reloadData()
+    }
+    
+    @IBAction func validateButton(_ sender: Any) {
+        var noteChooseNameArray = [String]()
+        for note in NotesGestion.shared.notesChoose {
+            noteChooseNameArray.append(note.name)
+        }
+        UserDefaults.standard.setValue(noteChooseNameArray, forKey: "notesChooseName")
+    }
+    
 }
 
 extension NotesChooseViewController : UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return NotesGestion.shared.majorNoteArray.count
+        
+        if collectionView.tag == 1 {
+            
+            return NotesGestion.shared.notesChoose.count
+        }
+        else if collectionView.tag == 2 {
+            return 12
+        }
+        else {
+            return 0
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let majorNote = NotesGestion.shared.majorNoteArray[indexPath.item]
-        
-        let minorNote = NotesGestion.shared.minorNoteArray[indexPath.item]
-        
-        
-        guard let majorNoteCell = majorNotesCollectionV.dequeueReusableCell(withReuseIdentifier: "MajorNoteToChooseCell", for: indexPath) as? MajorNotesCollectionViewCell else {return UICollectionViewCell()}
-       
-        majorNoteCell.buttonMajorNotesToChoose.setTitle(majorNote.name, for: .normal)
-        
-        majorNoteCell.buttonMajorNotesToChoose.addTarget(self, action: #selector(printSomething), for: .touchUpInside)
-        
-        guard let minorNoteCell = minorNotesCollectionV.dequeueReusableCell(withReuseIdentifier: "MinorNoteToChooseCell", for: indexPath) as? MinorNotesCollectionViewCell else {return UICollectionViewCell()}
-        
-        
-        
-        minorNoteCell.buttonMinorNotesToChoose.setTitle(minorNote.name, for: .normal)
-        
-        minorNoteCell.buttonMinorNotesToChoose.addTarget(self, action: #selector(printSomething), for: .touchUpInside)
-        
         if collectionView.tag == 1 {
-            return majorNoteCell
+            let notesChoose = notesChooseCollectionView.dequeueReusableCell(withReuseIdentifier: "chooseCell", for: indexPath) as! NotesChooseCustomCell
+            
+            notesChoose.backgroundColor = .clear
+            
+            notesChoose.notesChooseTextView.text = NotesGestion.shared.notesChoose[indexPath.item].name
+            return notesChoose
         }
-        else  {
-            return minorNoteCell
+       
+        if collectionView.tag == 2 {
+        let cellNotesToChoose = noteToChooseCollectionView.dequeueReusableCell(withReuseIdentifier: "NoteToChooseCell", for: indexPath) as! NoteToChooseCustomCell
+        cellNotesToChoose.backgroundColor = .clear
+        
+        if segmentedControlNotesToChoose.selectedSegmentIndex == 0 {
+            cellNotesToChoose.textView.text = NotesGestion.shared.majorNoteArray[indexPath.item].name
+        }
+        else if segmentedControlNotesToChoose.selectedSegmentIndex == 1 {
+            cellNotesToChoose.textView.text = NotesGestion.shared.minorNoteArray[indexPath.item].name
+        }
+        else if segmentedControlNotesToChoose.selectedSegmentIndex == 2 {
+            cellNotesToChoose.textView.text = NotesGestion.shared.maj7NoteArray[indexPath.item].name
+        }
+        else if segmentedControlNotesToChoose.selectedSegmentIndex == 3 {
+            cellNotesToChoose.textView.text = NotesGestion.shared.min7NoteArray[indexPath.item].name
+        }
+        else {
+            cellNotesToChoose.textView.text = "Error"
+        }
+            return cellNotesToChoose
         }
         
         
-        
-        
+        else {
+            let cellNotesToChoose = noteToChooseCollectionView.dequeueReusableCell(withReuseIdentifier: "NoteToChooseCell", for: indexPath) as! NoteToChooseCustomCell
+            cellNotesToChoose.textView.text = "Error"
+            return cellNotesToChoose
+        }
     }
     
-    func displayNotesChoose(){
-    var textTot = ""
-    labelNotesChoose.text = textTot
-    for element in NotesGestion.shared.notesChoose {
-        
-        textTot += "\(element)        "
-        
-        labelNotesChoose.text = textTot
-    }
-    }
-    
-    @objc func printSomething(sender : UIButton) {
-        NotesGestion.shared.chooseNote(note: sender.title(for: .normal)!)
-        print (NotesGestion.shared.notesChoose)
-        labelNotesChoose.reloadInputViews()
-        displayNotesChoose()
-    }
+
    
- 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+     
+       
+       if collectionView.tag == 2 {
+            if segmentedControlNotesToChoose.selectedSegmentIndex == 0 {
+                NotesGestion.shared.chooseNote(note: NotesGestion.shared.majorNoteArray[indexPath.item])
+                notesChooseCollectionView.reloadData()
+            }
+            else if segmentedControlNotesToChoose.selectedSegmentIndex == 1 {
+                NotesGestion.shared.chooseNote(note: NotesGestion.shared.minorNoteArray[indexPath.item])
+                notesChooseCollectionView.reloadData()
+
+            }
+            else if segmentedControlNotesToChoose.selectedSegmentIndex == 2 {
+                NotesGestion.shared.chooseNote(note: NotesGestion.shared.maj7NoteArray[indexPath.item])
+                notesChooseCollectionView.reloadData()
+
+            }
+            else if segmentedControlNotesToChoose.selectedSegmentIndex == 3 {
+                NotesGestion.shared.chooseNote(note: NotesGestion.shared.min7NoteArray[indexPath.item])
+                notesChooseCollectionView.reloadData()
+
+            }
+            else {
+                print("Error")
+            }
+            
+        }
+        else {
+            print("error")
+        }
+       
+    }
     
     
 }
 
 extension NotesChooseViewController : UICollectionViewDelegate {
     
-   
-   
+  
     
     
     

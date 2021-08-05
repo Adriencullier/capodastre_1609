@@ -9,10 +9,9 @@ import Foundation
 
 
 //MARK:- Structure des notes
-struct Note : Identifiable {
-    var id = UUID()
+struct Note {
     var name : String
-    var image : String
+    var image = ""
 }
 
 

@@ -9,67 +9,126 @@ import UIKit
 
 class CapodastreViewController: UIViewController {
     
-    @IBOutlet weak var capoLabel: UILabel!
+
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var capoLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var capoStepperOutlet: UIStepper!
     
-    @IBAction func capoStepper(_ sender: Any) {
-        capoLabel.text = Int(capoStepperOutlet.value).description
-       
-        displayTransposedNotes(capo: Int(capoStepperOutlet.value))
-        
-        
-    }
+    @IBOutlet weak var viewContainer: UIView!
     
     
-    @IBOutlet weak var labelTransposeNotes: UILabel!
+    
+   
     
     
     @IBAction func backCapodastreVC (segue : UIStoryboardSegue){
-      displayNotesChoose()
-        displayTransposedNotes(capo: Int(capoStepperOutlet.value))
-
+        collectionView.reloadData()
     }
     
     
     
    
     
-    @IBOutlet weak var labelNotesChoose: UILabel!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewContainer.backgroundColor = UIColor(red: 92/250, green: 142/250, blue: 200/250, alpha: 0.3)
+        viewContainer.layer.cornerRadius = 20
+        
+        collectionView.backgroundColor = .clear
+        
+        capoStepperOutlet.value = 1
+        capoLabel.text = "Capodastre : \(Int(capoStepperOutlet.value))"
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentTintColor = UIColor(red: 92/250, green: 142/250, blue: 200/250, alpha: 1)
+        capoLabel.isHidden = true
+        capoStepperOutlet.isHidden = true
+        collectionView.reloadData()
         
         
-        displayNotesChoose()
-        displayTransposedNotes(capo: Int(capoStepperOutlet.value))
+        
+        
+        
+       
     }
     
-    func displayNotesChoose(){
-    var textTot = ""
-    labelNotesChoose.text = textTot
-    for element in NotesGestion.shared.notesChoose {
+    @IBAction func capoStepper(_ sender: Any) {
         
-        textTot += "\(element)        "
+        capoLabel.text = "Capodastre : \(Int(capoStepperOutlet.value))"
+        collectionView.reloadData()
+       
         
-        labelNotesChoose.text = textTot
     }
+    
+    @IBAction func segmentedControlAction(_ sender: Any) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            capoLabel.isHidden = true
+            capoStepperOutlet.isHidden = true
+            collectionView.reloadData()
+            segmentedControl.selectedSegmentTintColor = UIColor(red: 92/250, green: 142/250, blue: 200/250, alpha: 1)
+            viewContainer.backgroundColor = UIColor(red: 92/250, green: 142/250, blue: 200/250, alpha: 0.3)
+            
+           
+        }
+        else if segmentedControl.selectedSegmentIndex == 1 {
+            capoLabel.isHidden = false
+            capoStepperOutlet.isHidden = false
+            collectionView.reloadData()
+            segmentedControl.selectedSegmentTintColor = UIColor(red: 243/250, green: 134/250, blue: 148/250, alpha: 1)
+            viewContainer.backgroundColor = UIColor(red: 243/250, green: 134/250, blue: 148/250, alpha: 0.3)
+           
+            
+            
+        }
+    }
+    
+
+}
+
+extension CapodastreViewController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       
+        let notesChooseNameArray = UserDefaults.standard.object(forKey: "notesChooseName") as? [String]
+        return notesChooseNameArray?.count ?? 0
+    
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
+        if segmentedControl.selectedSegmentIndex == 0 {
+        let notesChooseNameArray = UserDefaults.standard.object(forKey: "notesChooseName") as! [String]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CapodastreCustomCell
+        
+        cell.backgroundColor = .clear
+        cell.textView.text = notesChooseNameArray[indexPath.item]
+        
+        
+        return cell
+    }
+        else if segmentedControl.selectedSegmentIndex == 1 {
+            let notesChooseNameArray = UserDefaults.standard.object(forKey: "notesChooseName") as! [String]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CapodastreCustomCell
+            
+            cell.backgroundColor = .clear
+            cell.textView.text = NotesGestion.shared.transpose(note: notesChooseNameArray[indexPath.item], capo: Int(capoStepperOutlet.value))
+            
+            
+            return cell
+        }
+        else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CapodastreCustomCell
+            return cell
+        }
+        
+    }
+}
+
+extension CapodastreViewController : UICollectionViewDelegate {}
 
    
 
-}
-    func displayTransposedNotes(capo : Int){
-    var textTot = ""
-    labelTransposeNotes.text = textTot
-    for element in NotesGestion.shared.notesChoose {
-        
-        textTot += "\(NotesGestion.shared.transpose(note: element, capo: capo))        "
-        
-        labelTransposeNotes.text = textTot
-    }
-
-   
-
-}
-}
