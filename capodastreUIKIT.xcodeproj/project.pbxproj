@@ -7,35 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0346BD7D26E8903600EBEA36 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD7C26E8903600EBEA36 /* AppCoordinator.swift */; };
+		0346BD7F26E8915B00EBEA36 /* CapodastreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD7E26E8915B00EBEA36 /* CapodastreCoordinator.swift */; };
+		0346BD8126E891C100EBEA36 /* NotesChooseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8026E891C100EBEA36 /* NotesChooseCoordinator.swift */; };
+		0346BD8326E8931300EBEA36 /* CapodastreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8226E8931300EBEA36 /* CapodastreViewModel.swift */; };
+		0346BD8526E8935000EBEA36 /* NotesChooseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8426E8935000EBEA36 /* NotesChooseViewModel.swift */; };
+		0346BD8726E8978400EBEA36 /* ViewControllersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8626E8978400EBEA36 /* ViewControllersDelegate.swift */; };
+		0346BD8926E897F300EBEA36 /* CoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8826E897F300EBEA36 /* CoordinatorDelegate.swift */; };
+		0346BD8B26E898AF00EBEA36 /* CapodastreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8A26E898AF00EBEA36 /* CapodastreView.swift */; };
+		0346BD8D26E9133000EBEA36 /* UIView*Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8C26E9133000EBEA36 /* UIView*Extension.swift */; };
+		0346BD8F26E91F1800EBEA36 /* CustomCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346BD8E26E91F1800EBEA36 /* CustomCVCell.swift */; };
 		03711120268AFFE00042976A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371111F268AFFE00042976A /* AppDelegate.swift */; };
 		03711122268AFFE00042976A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03711121268AFFE00042976A /* SceneDelegate.swift */; };
-		03711127268AFFE00042976A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03711125268AFFE00042976A /* Main.storyboard */; };
 		03711129268AFFE50042976A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03711128268AFFE50042976A /* Assets.xcassets */; };
 		0371112C268AFFE50042976A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0371112A268AFFE50042976A /* LaunchScreen.storyboard */; };
 		03711138268B005E0042976A /* CapodastreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03711137268B005E0042976A /* CapodastreViewController.swift */; };
 		0371113A268B01AC0042976A /* NotesChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03711139268B01AC0042976A /* NotesChooseViewController.swift */; };
 		0371113C268B075D0042976A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371113B268B075D0042976A /* Note.swift */; };
-		0371113E268B07CB0042976A /* NotesGestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371113D268B07CB0042976A /* NotesGestion.swift */; };
-		03B65C7C26B7E0F70056C5DB /* CapodastreCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B65C7B26B7E0F70056C5DB /* CapodastreCustomCell.swift */; };
-		03B65C7E26B7EA9A0056C5DB /* NoteToChooseCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B65C7D26B7EA990056C5DB /* NoteToChooseCustomCell.swift */; };
-		03B65C8026B7F2900056C5DB /* NotesChooseCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B65C7F26B7F2900056C5DB /* NotesChooseCustomCell.swift */; };
+		0371113E268B07CB0042976A /* NotesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371113D268B07CB0042976A /* NotesDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0346BD7C26E8903600EBEA36 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		0346BD7E26E8915B00EBEA36 /* CapodastreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapodastreCoordinator.swift; sourceTree = "<group>"; };
+		0346BD8026E891C100EBEA36 /* NotesChooseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesChooseCoordinator.swift; sourceTree = "<group>"; };
+		0346BD8226E8931300EBEA36 /* CapodastreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapodastreViewModel.swift; sourceTree = "<group>"; };
+		0346BD8426E8935000EBEA36 /* NotesChooseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesChooseViewModel.swift; sourceTree = "<group>"; };
+		0346BD8626E8978400EBEA36 /* ViewControllersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersDelegate.swift; sourceTree = "<group>"; };
+		0346BD8826E897F300EBEA36 /* CoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDelegate.swift; sourceTree = "<group>"; };
+		0346BD8A26E898AF00EBEA36 /* CapodastreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapodastreView.swift; sourceTree = "<group>"; };
+		0346BD8C26E9133000EBEA36 /* UIView*Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView*Extension.swift"; sourceTree = "<group>"; };
+		0346BD8E26E91F1800EBEA36 /* CustomCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCVCell.swift; sourceTree = "<group>"; };
 		0371111C268AFFE00042976A /* capodastreUIKIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capodastreUIKIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0371111F268AFFE00042976A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03711121268AFFE00042976A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03711126268AFFE00042976A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03711128268AFFE50042976A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0371112B268AFFE50042976A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0371112D268AFFE50042976A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03711137268B005E0042976A /* CapodastreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapodastreViewController.swift; sourceTree = "<group>"; };
 		03711139268B01AC0042976A /* NotesChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesChooseViewController.swift; sourceTree = "<group>"; };
 		0371113B268B075D0042976A /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		0371113D268B07CB0042976A /* NotesGestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGestion.swift; sourceTree = "<group>"; };
-		03B65C7B26B7E0F70056C5DB /* CapodastreCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapodastreCustomCell.swift; sourceTree = "<group>"; };
-		03B65C7D26B7EA990056C5DB /* NoteToChooseCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteToChooseCustomCell.swift; sourceTree = "<group>"; };
-		03B65C7F26B7F2900056C5DB /* NotesChooseCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesChooseCustomCell.swift; sourceTree = "<group>"; };
+		0371113D268B07CB0042976A /* NotesDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +61,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0346BD7726E88E5A00EBEA36 /* Modules - Capodatre */ = {
+			isa = PBXGroup;
+			children = (
+				03711137268B005E0042976A /* CapodastreViewController.swift */,
+				0346BD8A26E898AF00EBEA36 /* CapodastreView.swift */,
+				0346BD8E26E91F1800EBEA36 /* CustomCVCell.swift */,
+				0346BD8226E8931300EBEA36 /* CapodastreViewModel.swift */,
+			);
+			path = "Modules - Capodatre";
+			sourceTree = "<group>";
+		};
+		0346BD7826E88E6A00EBEA36 /* Modules - NotesChoose  */ = {
+			isa = PBXGroup;
+			children = (
+				03711139268B01AC0042976A /* NotesChooseViewController.swift */,
+				0346BD8426E8935000EBEA36 /* NotesChooseViewModel.swift */,
+			);
+			path = "Modules - NotesChoose ";
+			sourceTree = "<group>";
+		};
+		0346BD7926E88EC400EBEA36 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				0346BD7C26E8903600EBEA36 /* AppCoordinator.swift */,
+				0346BD8826E897F300EBEA36 /* CoordinatorDelegate.swift */,
+				0346BD7B26E88F1200EBEA36 /* Navigation - Capodastre */,
+				0346BD7A26E88F0900EBEA36 /* Navigation - NotesChoose  */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		0346BD7A26E88F0900EBEA36 /* Navigation - NotesChoose  */ = {
+			isa = PBXGroup;
+			children = (
+				0346BD8026E891C100EBEA36 /* NotesChooseCoordinator.swift */,
+			);
+			path = "Navigation - NotesChoose ";
+			sourceTree = "<group>";
+		};
+		0346BD7B26E88F1200EBEA36 /* Navigation - Capodastre */ = {
+			isa = PBXGroup;
+			children = (
+				0346BD7E26E8915B00EBEA36 /* CapodastreCoordinator.swift */,
+			);
+			path = "Navigation - Capodastre";
+			sourceTree = "<group>";
+		};
 		03711113268AFFE00042976A = {
 			isa = PBXGroup;
 			children = (
@@ -68,53 +127,44 @@
 		0371111E268AFFE00042976A /* capodastreUIKIT */ = {
 			isa = PBXGroup;
 			children = (
-				0371111F268AFFE00042976A /* AppDelegate.swift */,
-				03711136268B00010042976A /* OTHER */,
-				03711135268AFFF30042976A /* MODEL */,
-				03711134268AFFF00042976A /* VIEW */,
-				03711133268AFFED0042976A /* CONTROLLER */,
+				0346BD7926E88EC400EBEA36 /* Navigation */,
+				03711136268B00010042976A /* Supporting Files */,
+				03711135268AFFF30042976A /* Models */,
+				03711134268AFFF00042976A /* Modules */,
 				0371112D268AFFE50042976A /* Info.plist */,
 			);
 			path = capodastreUIKIT;
 			sourceTree = "<group>";
 		};
-		03711133268AFFED0042976A /* CONTROLLER */ = {
+		03711134268AFFF00042976A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				03711137268B005E0042976A /* CapodastreViewController.swift */,
-				03711139268B01AC0042976A /* NotesChooseViewController.swift */,
-			);
-			path = CONTROLLER;
-			sourceTree = "<group>";
-		};
-		03711134268AFFF00042976A /* VIEW */ = {
-			isa = PBXGroup;
-			children = (
+				0346BD8626E8978400EBEA36 /* ViewControllersDelegate.swift */,
+				0346BD7726E88E5A00EBEA36 /* Modules - Capodatre */,
+				0346BD7826E88E6A00EBEA36 /* Modules - NotesChoose  */,
 				0371112A268AFFE50042976A /* LaunchScreen.storyboard */,
-				03B65C7F26B7F2900056C5DB /* NotesChooseCustomCell.swift */,
-				03711125268AFFE00042976A /* Main.storyboard */,
-				03B65C7B26B7E0F70056C5DB /* CapodastreCustomCell.swift */,
-				03B65C7D26B7EA990056C5DB /* NoteToChooseCustomCell.swift */,
 			);
-			path = VIEW;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		03711135268AFFF30042976A /* MODEL */ = {
+		03711135268AFFF30042976A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				0371113B268B075D0042976A /* Note.swift */,
-				0371113D268B07CB0042976A /* NotesGestion.swift */,
+				0371113D268B07CB0042976A /* NotesDataStore.swift */,
 			);
-			path = MODEL;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		03711136268B00010042976A /* OTHER */ = {
+		03711136268B00010042976A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0371111F268AFFE00042976A /* AppDelegate.swift */,
 				03711128268AFFE50042976A /* Assets.xcassets */,
 				03711121268AFFE00042976A /* SceneDelegate.swift */,
+				0346BD8C26E9133000EBEA36 /* UIView*Extension.swift */,
 			);
-			path = OTHER;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +226,6 @@
 			files = (
 				0371112C268AFFE50042976A /* LaunchScreen.storyboard in Resources */,
 				03711129268AFFE50042976A /* Assets.xcassets in Resources */,
-				03711127268AFFE00042976A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,29 +236,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0346BD8B26E898AF00EBEA36 /* CapodastreView.swift in Sources */,
+				0346BD8F26E91F1800EBEA36 /* CustomCVCell.swift in Sources */,
 				03711120268AFFE00042976A /* AppDelegate.swift in Sources */,
+				0346BD8526E8935000EBEA36 /* NotesChooseViewModel.swift in Sources */,
 				0371113C268B075D0042976A /* Note.swift in Sources */,
-				03B65C8026B7F2900056C5DB /* NotesChooseCustomCell.swift in Sources */,
+				0346BD7D26E8903600EBEA36 /* AppCoordinator.swift in Sources */,
 				03711122268AFFE00042976A /* SceneDelegate.swift in Sources */,
+				0346BD8726E8978400EBEA36 /* ViewControllersDelegate.swift in Sources */,
+				0346BD8126E891C100EBEA36 /* NotesChooseCoordinator.swift in Sources */,
+				0346BD8326E8931300EBEA36 /* CapodastreViewModel.swift in Sources */,
 				03711138268B005E0042976A /* CapodastreViewController.swift in Sources */,
-				03B65C7E26B7EA9A0056C5DB /* NoteToChooseCustomCell.swift in Sources */,
-				03B65C7C26B7E0F70056C5DB /* CapodastreCustomCell.swift in Sources */,
+				0346BD8D26E9133000EBEA36 /* UIView*Extension.swift in Sources */,
 				0371113A268B01AC0042976A /* NotesChooseViewController.swift in Sources */,
-				0371113E268B07CB0042976A /* NotesGestion.swift in Sources */,
+				0346BD8926E897F300EBEA36 /* CoordinatorDelegate.swift in Sources */,
+				0371113E268B07CB0042976A /* NotesDataStore.swift in Sources */,
+				0346BD7F26E8915B00EBEA36 /* CapodastreCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		03711125268AFFE00042976A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				03711126268AFFE00042976A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0371112A268AFFE50042976A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
