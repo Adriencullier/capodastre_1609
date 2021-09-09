@@ -22,10 +22,7 @@ class CapodastreViewController: UIViewController {
     
     private var capodastreView : CapodastreView!
     public var delegate : ViewControllersDelegate?
-    
-    
-    
-   
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,22 +32,36 @@ class CapodastreViewController: UIViewController {
     }
     
 
-    private func setupView()
-    {
+    private func setupView() {
+        
         capodastreView = CapodastreView(frame: view.frame)
         capodastreView?.configureCapodastreView(capodastreViewModel)
         view.addSubview(capodastreView)
+
+        
         capodastreView.transpositionStepper.addTarget(self, action: #selector(stepperTapped), for: .touchUpInside)
+        
+        capodastreView.selectNotesButton.addTarget(self, action: #selector(selectNotesButtonTapped), for: .touchUpInside)
+
     }
     
     @objc func stepperTapped() {
-        capodastreView.transpositionLabel.text =  Int(capodastreView.transpositionStepper.value).description
+        capodastreViewModel.capoNumber =  Int(capodastreView.transpositionStepper.value)
+        
         reloadView()
+    }
+    
+    @objc func selectNotesButtonTapped() {
+        print("Tapped")
+        delegate?.plusButtonTapped()
         
     }
-    private func reloadView() {
+    
+    
+    public func reloadView() {
         capodastreView?.configureCapodastreView(capodastreViewModel)
         view.addSubview(capodastreView)
+        capodastreView.collectionView.reloadData()
     }
     
 }
@@ -61,12 +72,12 @@ extension CapodastreViewController  : UICollectionViewDelegate {
 
 extension CapodastreViewController  : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        capodastreViewModel.selectedNotes.count
+        capodastreViewModel.transposedNotes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = capodastreView.collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCVCell", for: indexPath) as! CustomCVCell
-        cell.configureCell(capodastreViewModel.selectedNotes[indexPath.item])
+        cell.configureCell(capodastreViewModel.transposedNotes[indexPath.item])
         return cell
         
     }

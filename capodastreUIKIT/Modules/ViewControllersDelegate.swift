@@ -9,5 +9,6 @@ import Foundation
 import UIKit
 
 protocol ViewControllersDelegate {
-    
+    func plusButtonTapped()
+    func validateButtonTapped(_ selectedNotes : [Note])
 }

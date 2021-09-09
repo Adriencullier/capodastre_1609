@@ -20,10 +20,75 @@ class NotesChooseViewController: UIViewController {
     }
     
     public var delegate : ViewControllersDelegate?
+    private var notesChooseView : NotesChooseView!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        notesChooseView.collectionView.delegate = self
+        notesChooseView.collectionView.dataSource = self
         
 }
+    private func setupView() {
+        
+        notesChooseView = NotesChooseView(frame: view.frame)
+        notesChooseView?.configureNotesChooseView(notesChooseViewModel)
+        view.addSubview(notesChooseView)
+        
+        notesChooseView.segmentedControl.addTarget(self, action: #selector(segmentedControlIndexChange), for: .valueChanged)
+        notesChooseView.deleteButton.addTarget(self, action: #selector(deleteLastNote), for: .touchUpInside)
+        notesChooseView.validateButton.addTarget(self, action: #selector(validateButtonTapped), for: .touchUpInside)
+
+
+    }
+    @objc func segmentedControlIndexChange() {
+        print (notesChooseView.segmentedControl.selectedSegmentIndex)
+        notesChooseViewModel.segmentedControlSelectedIndex = notesChooseView.segmentedControl.selectedSegmentIndex
+        reloadView()
+    }
+    @objc func deleteLastNote() {
+        notesChooseViewModel.removeLastNote()
+        reloadView()
+    }
+    @objc func validateButtonTapped() {
+        delegate?.validateButtonTapped(notesChooseViewModel.selectedNotes)
+        reloadView()
+    }
+    public func reloadView() {
+        notesChooseView?.configureNotesChooseView(notesChooseViewModel)
+        view.addSubview(notesChooseView)
+        notesChooseView.collectionView.reloadData()
+    }
+}
+
+extension NotesChooseViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        notesChooseViewModel.selectNote(notesChooseViewModel.notesToSelect[indexPath.item])
+        reloadView()
+    }
+}
+
+extension NotesChooseViewController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return notesChooseViewModel.notesToSelect.count
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        
+        let cell = notesChooseView.collectionView.dequeueReusableCell(withReuseIdentifier: "NoteChooseCustomCVCell", for: indexPath) as! NoteChooseCustomCVCell
+        
+        cell.configureCell(notesChooseViewModel.notesToSelect[indexPath.item])
+        
+        return cell
+        
+        
+        
+    }
+    
+    
 }

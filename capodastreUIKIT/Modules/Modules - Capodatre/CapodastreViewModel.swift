@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class CapodastreViewModel {
+    
     private var dataStore : NotesDataStore
     init (dataStore : NotesDataStore) {
         self.dataStore = dataStore
@@ -17,4 +18,10 @@ class CapodastreViewModel {
     public var selectedNotes : [Note] {
         dataStore.selectedNotes ?? dataStore.selectedNotesMock
     }
+    
+    public var transposedNotes : [Note] {
+        dataStore.transposeSelectedNotes(selectedNotes, capoNumber)
+    }
+    
+    public var capoNumber : Int = 0
 }

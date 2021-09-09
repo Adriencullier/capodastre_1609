@@ -9,14 +9,19 @@
 import Foundation
 import UIKit
 
-extension UIView
-{
-    func anchor (top: NSLayoutYAxisAnchor?, bottom : NSLayoutYAxisAnchor?, leading : NSLayoutXAxisAnchor?, trailing : NSLayoutXAxisAnchor?, padding : UIEdgeInsets = .zero, size : CGSize = .zero)
-    {
+// Extension used to simplify the views' Anchor
+extension UIView {
+    ///
+    func anchor (
+        top: NSLayoutYAxisAnchor?,
+        bottom : NSLayoutYAxisAnchor?,
+        leading : NSLayoutXAxisAnchor?,
+        trailing : NSLayoutXAxisAnchor?,
+        padding : UIEdgeInsets = .zero,
+        size : CGSize = .zero) {
+            
         translatesAutoresizingMaskIntoConstraints = false
-        
-        if let top = top
-        {
+        if let top = top {
             topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
         }
         if let bottom = bottom {
@@ -28,19 +33,19 @@ extension UIView
         if let trailing = trailing {
             trailingAnchor.constraint(equalTo: trailing, constant: -padding.right).isActive = true
         }
-        if size.width != 0
-        {
+        if size.width != 0 {
             widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
-        if size.height != 0
-        {
+        if size.height != 0 {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
-        
     }
     
-    func centerAnchor (centerX: NSLayoutXAxisAnchor?, centerY : NSLayoutYAxisAnchor?)
-    {
+    ///
+    func centerAnchor (
+        centerX: NSLayoutXAxisAnchor?,
+        centerY : NSLayoutYAxisAnchor?) {
+            
         translatesAutoresizingMaskIntoConstraints = false
         if let centerX = centerX {
             centerXAnchor.constraint(equalTo: centerX).isActive = true

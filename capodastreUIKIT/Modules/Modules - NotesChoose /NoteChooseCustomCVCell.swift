@@ -1,19 +1,19 @@
 //
-//  CustomCVCell.swift
-//  CustomCVCell
+//  NoteChooseCustomCVCell.swift
+//  NoteChooseCustomCVCell
 //
-//  Created by Adrien Cullier on 08/09/2021.
+//  Created by Adrien Cullier on 09/09/2021.
 //
 
 import Foundation
 import UIKit
 
-class CustomCVCell : UICollectionViewCell {
+class NoteChooseCustomCVCell : UICollectionViewCell {
     
     private var cellLabel : UILabel = {
         let cellLabel = UILabel()
         cellLabel.textAlignment = .center
-        cellLabel.textColor = .black
+        cellLabel.textColor = .white
         return cellLabel
     }()
     
@@ -27,7 +27,7 @@ class CustomCVCell : UICollectionViewCell {
     
     public func configureCell (_ note : Note) {
         setupConstraints()
-        self.backgroundColor = .clear
+        self.backgroundColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
         self.layer.cornerRadius = 10
         cellLabel.text = note.name
     }

@@ -14,6 +14,10 @@ class NotesDataStore {
         Note(name: "Am", image: ""),
         Note(name: "C", image: ""),
         Note(name: "G", image: ""),
+        Note(name: "D", image: ""),
+        Note(name: "Am", image: ""),
+        Note(name: "C", image: ""),
+        Note(name: "G", image: ""),
         Note(name: "D", image: "")
     ]
     
@@ -91,15 +95,24 @@ class NotesDataStore {
         selectedNotes!.remove(at: lastNoteNumber)
     }
 
-    //MARK:- fonction de transposition
-    func transpose (note : String, capo : Int)->String {
+    public func transposeSelectedNotes (_ selectedNotes : [Note], _ capo : Int) -> [Note] {
+        var transposedSelectedNotes : [Note] = []
+        for note in selectedNotes {
+            let transposeNote = transposeNote(note: note, capo: capo)
+            transposedSelectedNotes.append(transposeNote)
+        }
+        return transposedSelectedNotes
+    }
+    
+    //MARK:- Note transposition Method
+    private func transposeNote (note : Note, capo : Int)-> Note {
         var indexMajor = 0
-        var transposeNote = ""
+        var transposeNote = note
         var indexMinor = 0
 
-        if note.contains("m") && note.contains("7") == false{
+        if note.name.contains("m") && note.name.contains("7") == false{
             for element in minorNotes {
-                if element.name == note {
+                if element.name == note.name {
                     for _ in 0...capo {
                         
                         if indexMinor == 12 {
@@ -107,15 +120,15 @@ class NotesDataStore {
                         }
                         indexMinor += 1
 
-                        transposeNote = minorNotes[indexMinor-1].name
+                        transposeNote = minorNotes[indexMinor-1]
                     }
                 }
                 indexMinor += 1
             }
         }
-        else if note.contains("m") == false && note.contains("7"){
+        else if note.name.contains("m") == false && note.name.contains("7"){
             for element in maj7Notes {
-                if element.name == note {
+                if element.name == note.name {
                     for _ in 0...capo {
                         
                         if indexMajor == 12 {
@@ -123,7 +136,7 @@ class NotesDataStore {
                         }
                         indexMajor += 1
 
-                        transposeNote = maj7Notes[indexMajor-1].name
+                        transposeNote = maj7Notes[indexMajor-1]
                     }
                 }
                 indexMajor += 1
@@ -132,9 +145,9 @@ class NotesDataStore {
             return transposeNote
              
                     }
-        else if note.contains("m") && note.contains("7") {
+        else if note.name.contains("m") && note.name.contains("7") {
             for element in min7Notes {
-                if element.name == note {
+                if element.name == note.name {
                     for _ in 0...capo {
                         
                         if indexMajor == 12 {
@@ -142,7 +155,7 @@ class NotesDataStore {
                         }
                         indexMajor += 1
 
-                        transposeNote = min7Notes[indexMajor-1].name
+                        transposeNote = min7Notes[indexMajor-1]
                     }
                 }
                 indexMajor += 1
@@ -153,7 +166,7 @@ class NotesDataStore {
                     }
        
         for element in majorNotes {
-            if element.name == note {
+            if element.name == note.name {
                 for _ in 0...capo {
                     
                     if indexMajor == 12 {
@@ -161,7 +174,7 @@ class NotesDataStore {
                     }
                     indexMajor += 1
 
-                    transposeNote = majorNotes[indexMajor-1].name
+                    transposeNote = majorNotes[indexMajor-1]
                 }
             }
             indexMajor += 1

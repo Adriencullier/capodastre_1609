@@ -11,19 +11,33 @@ import UIKit
 class CapodastreView : UIView {
     
     
-    public let selectNotesButton : UIButton = {
-        let selectNotesButton = UIButton()
-        selectNotesButton.backgroundColor = .blue
-        selectNotesButton.tintColor = .white
-        selectNotesButton.setImage(UIImage(systemName: "music.note.list"), for: .normal)
-        selectNotesButton.layer.cornerRadius = 5
-        return selectNotesButton
+    private var titleLabel : UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.text = "Capodastre"
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
+        titleLabel.font = UIFont(name: "arial", size: 50)
+        return titleLabel
     }()
     
-    public let segmentedControl : UISegmentedControl = {
-        let items = ["tonalité originale", "transposition"]
-        let segmentedControl = UISegmentedControl(items: items)
-        return segmentedControl
+    public let selectNotesButton : UIButton = {
+        let selectNotesButton = UIButton()
+        selectNotesButton.backgroundColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
+        selectNotesButton.tintColor = .white
+        selectNotesButton.setTitle("+", for: .normal)
+        selectNotesButton.layer.cornerRadius = 23
+        return selectNotesButton
+    }()
+
+    public let viewContainer : UIView =  {
+        let viewContainer = UIView()
+
+        viewContainer.backgroundColor = .clear
+        viewContainer.layer.cornerRadius = 10
+        viewContainer.layer.borderWidth = 2
+        viewContainer.layer.borderColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00).cgColor
+        viewContainer.layer.opacity = 0.7
+        return viewContainer
     }()
     
     public let collectionView : UICollectionView = {
@@ -33,7 +47,6 @@ class CapodastreView : UIView {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.register(CustomCVCell.self, forCellWithReuseIdentifier: "CustomCVCell")
         collectionView.backgroundColor = .clear
-        collectionView.layer.cornerRadius = 5
         return collectionView
     }()
     
@@ -41,6 +54,7 @@ class CapodastreView : UIView {
         let transpositionLabel = UILabel()
         transpositionLabel.text = Int(transpositionStepper.value).description
         transpositionLabel.textAlignment = .center
+        transpositionLabel.textColor = .black
         return transpositionLabel
     }()
     
@@ -48,14 +62,20 @@ class CapodastreView : UIView {
         let transpositionStepper = UIStepper()
         transpositionStepper.minimumValue = 0
         transpositionStepper.maximumValue = 12
+        transpositionStepper.backgroundColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
+        transpositionStepper.tintColor = .white
+        transpositionStepper.setDecrementImage(UIImage(systemName: "minus"), for: .normal)
+        transpositionStepper.setIncrementImage(UIImage(systemName: "plus"), for: .normal)
+        transpositionStepper.layer.cornerRadius = 10
         return transpositionStepper
     }()
     
     override init (frame : CGRect) {
         super.init(frame: frame)
        
+        addSubview(titleLabel)
+        addSubview(viewContainer)
         addSubview(selectNotesButton)
-        addSubview(segmentedControl)
         addSubview(collectionView)
         addSubview(transpositionLabel)
         addSubview(transpositionStepper)
@@ -66,53 +86,75 @@ class CapodastreView : UIView {
     }
     
     public func configureCapodastreView (_ viewModel : CapodastreViewModel) {
-        self.backgroundColor = .white
         setupConstraints ()
+        self.backgroundColor = .white
+        
+        guard viewModel.capoNumber != 0 && viewModel.capoNumber != 12  else {
+            self.transpositionLabel.text = "Tonalité originale"
+            return
+        }
+        transpositionLabel.text = "Capo : \(viewModel.capoNumber.description)"
+
     }
     
     private func setupConstraints () {
-        selectNotesButton.anchor(
+        titleLabel.anchor(
             top: self.topAnchor,
             bottom: nil,
-            leading: nil,
+            leading: self.leadingAnchor,
             trailing: self.trailingAnchor,
-            padding: .init(top: 30, left: 0, bottom: 0, right: 20),
-            size: CGSize(width: 45, height: 45))
+            padding: .init(top: 60, left: 0, bottom: 0, right: 0))
+        titleLabel.centerAnchor(
+            centerX: self.centerXAnchor,
+            centerY: nil)
         
-        segmentedControl.anchor(
-            top: nil,
-            bottom: collectionView.topAnchor,
+        selectNotesButton.anchor(
+            top: viewContainer.bottomAnchor,
+            bottom: nil,
             leading: nil,
             trailing: nil,
-            padding: .init(top: 0, left: 0, bottom: 10, right: 0) )
-        segmentedControl.centerAnchor(
+            padding: .init(top: 20, left: 0, bottom: 0, right: 0),
+            size: CGSize(width: 45, height: 45))
+        selectNotesButton.centerAnchor(
             centerX: self.centerXAnchor,
             centerY: nil)
         
         transpositionLabel.anchor(
-            top: collectionView.bottomAnchor,
-            bottom: nil,
+            top: nil,
+            bottom: transpositionStepper.topAnchor,
             leading: nil,
             trailing: nil,
-            padding: .init(top: 10, left: 0, bottom: 0, right: 0))
+            padding: .init(top: 0, left: 0, bottom: 10, right: 0))
         transpositionLabel.centerAnchor(
             centerX: self.centerXAnchor,
             centerY: nil)
         
         transpositionStepper.anchor(
-            top: transpositionLabel.bottomAnchor,
-            bottom: nil,
+            top: nil,
+            bottom: collectionView.topAnchor,
             leading: nil,
             trailing: nil,
-            padding: .init(top: 10, left: 0, bottom: 0, right: 0))
+            padding: .init(top: 0, left: 0, bottom: 20, right: 0))
         transpositionStepper.centerAnchor(
             centerX: self.centerXAnchor,
             centerY: nil)
         
-        collectionView.anchor(top: nil, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 20), size: CGSize(width: 0, height: 135))
+        viewContainer.anchor(
+            top: collectionView.topAnchor,
+            bottom: collectionView.bottomAnchor,
+            leading: collectionView.leadingAnchor,
+            trailing: collectionView.trailingAnchor)
+        
+        collectionView.anchor(
+            top: self.centerYAnchor,
+            bottom: nil,
+            leading: self.leadingAnchor,
+            trailing: self.trailingAnchor,
+            padding: .init(top: 0, left: 20, bottom: 0, right: 20),
+            size: CGSize(width: 0, height: 135))
         collectionView.centerAnchor(
             centerX: self.centerXAnchor,
-            centerY: self.centerYAnchor)
+            centerY: nil)
     }
     
     

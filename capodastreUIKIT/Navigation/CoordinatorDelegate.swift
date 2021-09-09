@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Coordinator delegate protocol
 protocol CoordinatorDelegate {
-    
+    func presentNotesChooseViewController()
+    func updateDataStoreAndDismiss(_ selectedNotes : [Note])
 }
