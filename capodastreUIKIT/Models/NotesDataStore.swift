@@ -9,7 +9,8 @@ import Foundation
 
 class NotesDataStore {
 
-    var selectedNotes : [Note]?
+    public var selectedNotes : [Note]? = []
+    
     var selectedNotesMock : [Note] = [
         Note(name: "Am", image: ""),
         Note(name: "C", image: ""),
@@ -79,9 +80,8 @@ class NotesDataStore {
         Note(name: "Gm#7", image: "")
     ]
     
-    func chooseNote (note : Note) {
+    public func chooseNote (note : Note) {
         guard selectedNotes!.count < 8 else {
-           // TO DO : Print a message error (8 notes max)
            print ("Message error : 8 notes max")
             return
         }
@@ -89,9 +89,11 @@ class NotesDataStore {
         print("La note \(note.name) a bien été ajoutée à notesChoose")
     }
     
-    func delLastNote (){
-        let lastNoteNumber = selectedNotes!.count-1
-        guard lastNoteNumber >= 0 else { return }
+    public func delLastNote (){
+        var lastNoteNumber = 0
+        if selectedNotes! .count >= 0 {
+            lastNoteNumber = selectedNotes!.count-1
+        }
         selectedNotes!.remove(at: lastNoteNumber)
     }
 
